@@ -30,6 +30,9 @@ import AllTemplates from './Screens/AllTemplates';
 import Projects from './Screens/Projects';
 import DownloadHistory from './Screens/DownloadHistory';
 import CustomizeTemplates from './Screens/CustomizeTemplates';
+import Editor from './Screens/Editor';
+import LayersLayout from './Components/LayersLayout';
+import CreateProject from './Screens/CreateProject';
 
 
 const CustomStatusBar = ({backgroundColor, barStyle = 'light-content'}) => {
@@ -83,7 +86,10 @@ const Router = () => {
           <Stack.Screen name="TermsOfUse" component={TermsOfUse} />
           <Stack.Screen name="Templates" component={Templates} />
           <Stack.Screen name="CustomizeTemplate" component={CustomizeTemplates} />
+          <Stack.Screen name="CreateProject" component={CreateProject} />
+          <Stack.Screen name="Editor" component={Editor} />
           <Stack.Screen name="AllTemplates" component={AllTemplates} />
+          <Stack.Screen name="Add" component={LayersLayout} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen name="EmailNotification" component={EmailNotification} />
           <Stack.Screen name="Email" component={Email} />

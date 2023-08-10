@@ -9,7 +9,7 @@ import {
 import {BLACK, GREY} from '../Constants/Colors';
 import React, {useEffect, useState} from 'react';
 import Images from '../Constants/Images';
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 import * as mime from 'mime';
 import Container from '../Components/Container';
@@ -21,7 +21,6 @@ import { putRequestForm, uploadURL } from '../Services/request';
 const EditProfile = () => {
   const [image, setImage] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +29,7 @@ const EditProfile = () => {
   const [userId, setUserId] = useState();
   const [country, setCountry] = useState("");
 
-  const pickImage = async () => {
+  const pickImage = () => {
     ImagePicker.launchImageLibrary(
       {
         mediaType: 'photo',
@@ -42,11 +41,14 @@ const EditProfile = () => {
       response => {
         if (!response.didCancel) {
           setImage(response.assets[0].uri);
-          const file = uriToFile(response.assets[0].uri);
-          setProfileImage(file);
+          uriToFile(response.assets[0].uri).then(file => {
+            setProfileImage(file);
+          });
         }
       },
     );
+      
+
   };
 
   async function uriToFile(uri) {
